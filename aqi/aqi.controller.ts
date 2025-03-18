@@ -19,7 +19,11 @@ export const aqi = api(
 		try {
 			return await AQIService.fetchAirQualityOutlook(CITY);
 		} catch (error) {
-			throw APIError.aborted(error?.toString() || 'Error fetching AQI');
+			const errorString =
+				error !== undefined && error !== null
+					? (error as string)
+					: ('Error fetching AQI' as string);
+			throw APIError.aborted(errorString);
 		}
 	},
 );

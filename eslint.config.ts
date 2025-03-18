@@ -50,7 +50,7 @@ export default [
 		rules: {
 			'no-console': 'warn',
 			'no-debugger': 'warn',
-			'no-warning-comments': ['warn', { terms: ['!'] }],
+			'no-warning-comments': ['warn', { terms: ['!!'] }],
 			'object-shorthand': 'error',
 			'no-param-reassign': [
 				'error',
