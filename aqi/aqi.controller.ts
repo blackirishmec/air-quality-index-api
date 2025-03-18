@@ -1,4 +1,5 @@
 import { api, APIError } from 'encore.dev/api';
+import { secret } from 'encore.dev/config';
 
 import type {
 	AQIParams,
@@ -6,6 +7,8 @@ import type {
 } from '@/aqi/aqi.interface';
 
 import AQIService from '@/aqi/aqi.service';
+
+export const purpleAirApiKey = secret('PurpleAirApiKey');
 
 /**
  * Get Air Quality Index and Outlook by city.

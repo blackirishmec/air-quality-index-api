@@ -1,5 +1,3 @@
-import { secret } from 'encore.dev/config';
-
 import type {
 	CityStationIdResponse,
 	FetchAirQualityOutlookResponse,
@@ -7,6 +5,7 @@ import type {
 } from '@/aqi/aqi.interface';
 import type { CityStationId } from '@prisma/client';
 
+import { purpleAirApiKey } from '@/aqi/aqi.controller';
 import { axiosInstance } from '@/aqi/axiosInstance';
 import { prisma } from '@/aqi/database';
 import { transformPurpleAirApiPMResponse } from '@/aqi/transformers/purpleAirTransformers';
@@ -43,8 +42,6 @@ const AQIService = {
 				message: 'cityStationIdRecord not found',
 			};
 		}
-
-		const purpleAirApiKey = secret('PurpleAirApiKey');
 
 		const purpleAirApiPMResponse =
 			await axiosInstance.get<PurpleAirApiPMResponseData>(
