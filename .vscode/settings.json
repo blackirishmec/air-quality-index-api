@@ -1,0 +1,22 @@
+{
+	"editor.formatOnSave": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"prettier.requireConfig": true,
+	"prettier.useEditorConfig": false,
+	"cSpell.words": [
+		"autoincrement",
+		"encino",
+		"revelstoke",
+		"sqldb",
+		"williston"
+	],
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "always"
+	},
+}

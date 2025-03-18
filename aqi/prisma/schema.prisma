@@ -11,11 +11,13 @@ generator client {
 
 datasource db {
     provider = "postgresql"
-    url      = "postgresql://air-quality-index-45yi:shadow-cvcaabkdlejggtjrmpkg@127.0.0.1:9500/encore_prisma_test?sslmode=disable"
+    url      = "postgresql://air-quality-index-45yi:shadow-cvcaabkdlejggtjrmpkg@127.0.0.1:9500/aqi?sslmode=disable"
 }
 
-model User {
-    id      Int    @id @default(autoincrement())
-    name    String
-    surname String
+model CityStationId {
+    id        Int    @id @default(autoincrement())
+    cityName  String @unique @map("city_name")
+    stationId Int    @map("station_id")
+
+    @@map("city_station_id")
 }
