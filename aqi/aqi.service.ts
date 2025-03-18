@@ -1,7 +1,7 @@
 import type {
-	CityStationIdResponse,
 	FetchAirQualityOutlookResponse,
 	PurpleAirApiPMResponseData,
+	ReadCityNamesResponse,
 } from '@/aqi/aqi.interface';
 import type { CityStationId } from '@prisma/client';
 
@@ -12,21 +12,23 @@ import { transformPurpleAirApiPMResponse } from '@/aqi/transformers/purpleAirTra
 import { aqiFromPM } from '@/aqi/utilities/aqiFromPM';
 
 const AQIService = {
-	findOneCityStationIdByCityName: async (
-		cityName: CityStationId['cityName'],
-	): Promise<CityStationIdResponse> => {
-		const cityStationId = await prisma.cityStationId.findFirst({
-			where: { cityName },
+	readCityNames: async (): Promise<ReadCityNamesResponse> => {
+		const cityNameRecords = await prisma.cityStationId.findMany({
+			select: {
+				cityName: true,
+			},
 		});
-		if (!cityStationId) {
+		if (cityNameRecords.length === 0) {
 			return {
 				success: false,
-				message: 'cityStationId not found',
+				message: 'cityNames not found',
 			};
 		}
 		return {
 			success: true,
-			result: cityStationId,
+			result: cityNameRecords.map(
+				cityNameRecord => cityNameRecord.cityName,
+			),
 		};
 	},
 
@@ -45,7 +47,7 @@ const AQIService = {
 
 		const purpleAirApiPMResponse =
 			await axiosInstance.get<PurpleAirApiPMResponseData>(
-				`https://api.purpleair.com/v1/sensors?fields=pm2.5_10minute&location_type=0&show_only=${cityStationIdRecord.stationId}`,
+				`/sensors?fields=pm2.5_10minute&location_type=0&show_only=${cityStationIdRecord.stationId}`,
 				{
 					headers: { 'X-API-Key': purpleAirApiKey() },
 				},

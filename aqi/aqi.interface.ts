@@ -18,6 +18,15 @@ export interface CityStationIdResponse {
 	result?: CityStationIdDto | CityStationIdDto[];
 }
 
+export interface ReadCityNamesResponse {
+	/** Indicates if the request was successful */
+	success: boolean;
+	/** Error message if the request was not successful */
+	message?: string;
+	/** City names data */
+	result?: string[];
+}
+
 export interface FetchCityStationIdResponse {
 	/** Indicates if the request was successful */
 	success: boolean;
