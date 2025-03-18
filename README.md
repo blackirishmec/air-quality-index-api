@@ -1,14 +1,12 @@
-# Encore + Prisma TypeScript Example
+# Air Quality Index API
 
-This is a RESTful API Starter with [Prisma](https://prisma.io) as ORM to handle database CRUD operations.
+This is a RESTful API created with [Encore](https://encore.dev/) and [Prisma](https://prisma.io) to allow users to query Air Quality Index and Outlook for a list of predefined cities.
 
-## Developing locally
+## Requirements
 
-When you have [installed Encore](https://encore.dev/docs/ts/install), you can create a new Encore application and clone this example with this command.
-
-```bash
-encore app create --example=ts/prisma
-```
+- [Encore CLI](https://encore.dev/docs/ts/install#install-the-encore-cli)
+- [Node.js](https://nodejs.org/en/download/) is required to run Encore.ts apps.
+- [Docker](https://www.docker.com/) is required for Encore to set up local databases.
 
 ## Running locally
 
@@ -18,75 +16,16 @@ encore run
 
 While `encore run` is running, open <http://localhost:9400/> to view Encore's [local developer dashboard](https://encore.dev/docs/ts/observability/dev-dash).
 
-## Configure Prisma
-
-Get the connection string to the shadow database by running:
-
-```
-encore db conn-uri encore_prisma_test --shadow
-
-```
-
-Then edit `users/prisma/schema.prisma` replace `<paste shadow db connection string here>` with the output of the above command.
-
-
 ## Using the API
 
-Counts and returns the number of existing users
+Get city names for querying Air Quality Index and Outlook
 
 ```bash
-curl 'http://localhost:4000/count/users'
+curl 'http://localhost:4000/cityNames'
 ```
 
-Create a new user
+Get Air Quality Index and Outlook by city
 
 ```bash
-curl 'http://localhost:4000/users' -d '{"name":"John","surname":"Doe"}'
+curl 'http://localhost:4000/aqi?CITY={cityName}'
 ```
-
-Get all users data
-
-```bash
-curl 'http://localhost:4000/users'
-
-# for paginated data:
-curl 'http://localhost:4000/users?page=1&limit=10'
-```
-
-Get user data by id
-
-```bash
-curl 'http://localhost:4000/users/:id'
-```
-
-Update user data
-
-```bash
-# partial update
-curl -XPATCH 'http://localhost:4000/users/:id' -d '{"data":{"name":"Johnny"}}'
-
-# update complete data
-curl -XPATCH 'http://localhost:4000/users/:id' -d '{"data":{"name":"Mary","surname":"Jane"}}'
-```
-
-Delete an user by id
-
-```bash
-curl -X DELETE 'http://localhost:4000/users/:id'
-```
-
-## Deployment
-
-Deploy your application to a staging environment in Encore's free development cloud:
-
-```bash
-git add -A .
-git commit -m 'Commit message'
-git push encore
-```
-
-Then head over to the [Cloud Dashboard](https://app.encore.dev) to monitor your deployment and find your production URL.
-
-From there you can also connect your own AWS or GCP account to use for deployment.
-
-Now off you go into the clouds!
