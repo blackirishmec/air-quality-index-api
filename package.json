@@ -6,7 +6,7 @@
 	"license": "MPL-2.0",
 	"type": "module",
 	"scripts": {
-		"postinstall": "npx prisma generate --schema=users/prisma/schema.prisma"
+		"postinstall": "npx prisma generate --schema=aqi/prisma/schema.prisma"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.22.0",
