@@ -7,6 +7,7 @@ import type {
 } from '@/aqi/aqi.interface';
 
 import AQIService from '@/aqi/aqi.service';
+import { sanitizeAQIErrorString } from '@/aqi/utilities/sanitizeErrorString';
 
 export const purpleAirApiKey = secret('PurpleAirApiKey');
 
@@ -19,10 +20,7 @@ export const aqi = api(
 		try {
 			return await AQIService.fetchAirQualityOutlook(CITY);
 		} catch (error) {
-			const errorString =
-				error !== undefined && error !== null
-					? (error as string)
-					: ('Error fetching AQI' as string);
+			const errorString = sanitizeAQIErrorString(error);
 			throw APIError.aborted(errorString);
 		}
 	},

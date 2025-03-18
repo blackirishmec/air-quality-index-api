@@ -1,3 +1,5 @@
+import type { ValidCity } from '@/aqi/aqi.type';
+
 export interface CityStationIdDto {
 	/** ID of the CityStationId */
 	id: number;
@@ -27,7 +29,7 @@ export interface FetchCityStationIdResponse {
 
 export interface AQIParams {
 	// CITY is the name of the CITY for which the AQI is being requested. It defaults to 'burlington'.
-	CITY: string;
+	CITY: ValidCity;
 }
 
 export interface AqiFromPM {
