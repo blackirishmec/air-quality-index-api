@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+
 import type {
 	FetchAirQualityOutlookResponse,
 	PurpleAirApiPMResponseData,
@@ -9,6 +11,11 @@ import { axiosInstance } from '@/aqi/axiosInstance';
 import { prisma } from '@/aqi/database';
 import { transformPurpleAirApiPMResponse } from '@/aqi/transformers/purpleAirTransformers';
 import { aqiFromPM } from '@/aqi/utilities/aqiFromPM';
+
+const env = dotenv.config();
+if (env.error) {
+	throw env.error;
+}
 
 const AQIService = {
 	readCityNames: async (): Promise<ReadCityNamesResponse> => {
