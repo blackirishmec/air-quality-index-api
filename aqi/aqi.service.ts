@@ -5,7 +5,6 @@ import type {
 } from '@/aqi/aqi.interface';
 import type { CityStationId } from '@prisma/client';
 
-import { purpleAirApiKey } from '@/aqi/aqi.controller';
 import { axiosInstance } from '@/aqi/axiosInstance';
 import { prisma } from '@/aqi/database';
 import { transformPurpleAirApiPMResponse } from '@/aqi/transformers/purpleAirTransformers';
@@ -49,7 +48,7 @@ const AQIService = {
 			await axiosInstance.get<PurpleAirApiPMResponseData>(
 				`/sensors?fields=pm2.5_10minute&location_type=0&show_only=${cityStationIdRecord.stationId}`,
 				{
-					headers: { 'X-API-Key': purpleAirApiKey() },
+					headers: { 'X-API-Key': process.env.PURPLE_AIR_API_KEY },
 				},
 			);
 
