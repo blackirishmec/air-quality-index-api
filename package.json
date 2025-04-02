@@ -6,7 +6,8 @@
 	"license": "MPL-2.0",
 	"type": "module",
 	"scripts": {
-		"postinstall": "npx prisma generate --schema=aqi/prisma/schema.prisma"
+		"postinstall": "npx prisma generate --schema=aqi/prisma/schema.prisma",
+		"test": "vitest"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.22.0",
@@ -22,7 +23,9 @@
 		"prisma": "^5.22.0",
 		"tsx": "^4.19.3",
 		"typescript": "^5.2.2",
-		"typescript-eslint": "^8.26.1"
+		"typescript-eslint": "^8.26.1",
+		"vite": "^6.2.4",
+		"vitest": "^3.1.1"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.22.0",
