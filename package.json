@@ -1,5 +1,5 @@
 {
-	"name": "encore-prisma-example",
+	"name": "air-quality-index-api",
 	"private": true,
 	"version": "0.0.1",
 	"description": "Encore + Prisma Typescript Example",

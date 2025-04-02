@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { cityNames } from '@/aqi/aqi.controller';
+import { cityNames } from './aqi.controller';
 
 describe('cityNames', () => {
 	test('should be successful', async () => {
